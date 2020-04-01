@@ -2,8 +2,8 @@ import 'package:boilerplate/data/local/service.dart';
 import 'package:boilerplate/models/user.dart';
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 
-class UserService extends Service {
-  UserService();
+class UserServiceImpl extends UserService {
+  UserServiceImpl();
 
   @override
   Future<User> findById(int id) {
@@ -24,4 +24,9 @@ class UserService extends Service {
     // TODO: implement findByFbToken
     return null;
   }
+}
+
+abstract class UserService extends Service {
+  Future<User> findByAccount(String account, String password);
+  Future<User> findByFbToken(String username, String password);
 }

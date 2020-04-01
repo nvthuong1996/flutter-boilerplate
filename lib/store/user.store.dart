@@ -17,16 +17,15 @@ abstract class _UserStoreBase with Store {
   @observable
   String password = '';
 
-  Service userService;
+  UserService userService;
 
   _UserStoreBase() {
-    this.userService = GetIt.I<UserService>();
+    this.userService = GetIt.I<UserServiceImpl>();
   }
 
   @action
   Future<User> loginByUserNamePassWord() async {
-    User user =
-        await (userService as UserService).findByAccount(account, password);
+    User user = await userService.findByAccount(account, password);
     return user;
   }
 }
